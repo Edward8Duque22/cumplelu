@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lu · Feliz cumpleaños</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-0:#0f0b10;
+    --bg-1:#1b1420;
+    --bg-2:#241a26;
+    --gold:#c9a86a;
+    --gold-bright:#e9cd93;
+    --cream:#f3e9da;
+    --rose:#c98a7a;
+    --wine:#4a1f2b;
+    --muted:#b9a99c;
+  }
+
+  *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 50% 0%, var(--bg-2) 0%, var(--bg-1) 45%, var(--bg-0) 100%);
+    color:var(--cream);
+    font-family:'Lora', serif;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  #particles{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:1;
+  }
+
+  .content{
+    position:relative;
+    z-index:2;
+  }
+
+  /* ---------- Ornaments ---------- */
+  .divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin:2.4rem auto;
+    width:min(320px, 70%);
+    opacity:.8;
+  }
+  .divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .divider .dot{
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--gold-bright);
+    box-shadow:0 0 10px 2px rgba(233,205,147,.55);
+  }
+
+  .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:.85rem;
+    color:var(--gold);
+    text-align:center;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:6vh 6vw;
+  }
+
+  .hero .eyebrow{margin-bottom:1.4rem;}
+
+  .hero h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    font-size:clamp(5rem, 22vw, 11rem);
+    line-height:.9;
+    margin:0;
+    letter-spacing:.01em;
+    color:var(--gold-bright);
+    text-shadow:
+      0 0 40px rgba(233,205,147,.45),
+      0 0 90px rgba(233,205,147,.18);
+    animation:glow 6s ease-in-out infinite;
+  }
+
+  @keyframes glow{
+    0%,100%{ text-shadow:0 0 40px rgba(233,205,147,.45), 0 0 90px rgba(233,205,147,.18); }
+    50%{ text-shadow:0 0 55px rgba(233,205,147,.65), 0 0 120px rgba(233,205,147,.30); }
+  }
+
+  .hero p.tag{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:clamp(1.1rem, 2.2vw, 1.5rem);
+    color:var(--muted);
+    max-width:30ch;
+    margin:1.6rem 0 0;
+  }
+
+  .scroll-hint{
+    margin-top:3.5rem;
+    font-size:.75rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--muted);
+    opacity:.6;
+  }
+
+  /* ---------- Sections ---------- */
+  section{
+    max-width:640px;
+    margin:0 auto;
+    padding:5vh 7vw 2vh;
+  }
+
+  .letter p{
+    font-size:clamp(1.05rem, 1.6vw, 1.2rem);
+    line-height:1.9;
+    color:var(--cream);
+    margin:0 0 1.4rem;
+  }
+
+  .letter p:first-of-type::first-letter{
+    font-family:'Cormorant Garamond', serif;
+    font-size:3.4rem;
+    line-height:.7;
+    float:left;
+    padding:.12em .08em 0 0;
+    color:var(--gold-bright);
+  }
+
+  /* ---------- Quality panels ---------- */
+  .qualities{
+    max-width:720px;
+    margin:2vh auto 4vh;
+    padding:0 6vw;
+    display:flex;
+    flex-direction:column;
+    gap:3.2rem;
+  }
+
+  .quality{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:1.6rem;
+    align-items:start;
+  }
+
+  .quality .mark{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:2.6rem;
+    color:var(--rose);
+    line-height:1;
+    padding-top:.1em;
+  }
+
+  .quality h3{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    font-size:clamp(1.5rem, 3vw, 1.9rem);
+    margin:0 0 .5rem;
+    color:var(--gold-bright);
+  }
+
+  .quality p{
+    margin:0;
+    font-size:1.02rem;
+    line-height:1.85;
+    color:var(--cream);
+    opacity:.92;
+  }
+
+  /* ---------- Photo frame ---------- */
+  .photo-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:4vh 6vw 6vh;
+  }
+
+  .frame{
+    position:relative;
+    width:min(420px, 82vw);
+    aspect-ratio:4/5;
+    border-radius:6px;
+    padding:14px;
+    background:linear-gradient(160deg, var(--gold) 0%, #8a6d3a 45%, var(--gold) 100%);
+    box-shadow:
+      0 20px 60px rgba(0,0,0,.55),
+      0 0 0 1px rgba(233,205,147,.25);
+  }
+
+  .frame-inner{
+    width:100%;
+    height:100%;
+    border-radius:2px;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 50% 30%, #3a2b30 0%, #1c1420 70%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+
+  /*
+    ───────────────────────────────────────────────────────────
+    PARA PONER LA FOTO DE LU:
+    Reemplaza el <div class="frame-placeholder">…</div> de aquí
+    abajo por:  <img src="RUTA_O_URL_DE_LA_FOTO.jpg" alt="Lu">
+    La imagen se recorta sola para llenar el marco (object-fit: cover).
+    ───────────────────────────────────────────────────────────
+  */
+  .frame-inner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .frame-placeholder{
+    text-align:center;
+    color:var(--muted);
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1rem;
+    padding:1.5rem;
+    opacity:.7;
+  }
+
+  .photo-caption{
+    margin-top:1.4rem;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--muted);
+    text-align:center;
+  }
+
+  /* ---------- Closing ---------- */
+  .closing{
+    text-align:center;
+    padding:4vh 8vw 12vh;
+  }
+
+  .closing p{
+    font-size:clamp(1.05rem, 1.7vw, 1.25rem);
+    line-height:1.9;
+    color:var(--cream);
+    max-width:44ch;
+    margin:0 auto 2rem;
+  }
+
+  .signature{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.6rem;
+    color:var(--gold-bright);
+    margin-top:1rem;
+  }
+
+  .signature span{
+    display:block;
+    font-size:.8rem;
+    font-style:normal;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:.6rem;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero h1{ animation:none; }
+    #particles{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="content">
+
+  <section class="hero">
+    <p class="eyebrow">Hoy es tu día</p>
+    <h1>Lu</h1>
+    <p class="tag">porque tu nombre ya lo dice todo: eres la luz que le llega a los demás.</p>
+    <p class="scroll-hint">sigue bajando ↓</p>
+  </section>
+
+  <section class="letter">
+    <p>Lu, hay personas que entran a un lugar y solo ocupan espacio, y hay personas como tú, que entran y lo llenan de calidez. Basta con mirarte a los ojos para saber que ahí adentro hay algo genuino: un cariño que no se actúa, que simplemente eres.</p>
+    <p>Eres dulce sin proponértelo, tierna incluso cuando crees que nadie se da cuenta, y tan sentimental que se te nota hasta en los silencios. Esa mirada tuya dice más de lo que muchas palabras podrían decir, y quienes tenemos la suerte de conocerte sabemos exactamente a qué nos referimos.</p>
+  </section>
+
+  <div class="divider"><span class="line"></span><span class="dot"></span><span class="line"></span></div>
+
+  <div class="qualities">
+    <div class="quality">
+      <span class="mark">“</span>
+      <div>
+        <h3>La amiga que todos quisieran tener</h3>
+        <p>No hay medias tintas en tu amistad. Cuando decides querer a alguien, lo haces completo: escuchas de verdad, celebras de verdad, y estás presente de verdad. Eso, hoy en día, no es poca cosa.</p>
+      </div>
+    </div>
+    <div class="quality">
+      <span class="mark">“</span>
+      <div>
+        <h3>El amor que regalas sin pedir nada a cambio</h3>
+        <p>Tienes esa capacidad tan tuya de hacer que la gente se sienta importante, vista, querida. No es casualidad: es el reflejo de lo que llevas por dentro, y las personas que te rodeamos lo recibimos como un regalo.</p>
+      </div>
+    </div>
+    <div class="quality">
+      <span class="mark">“</span>
+      <div>
+        <h3>Esa ternura que te delata</h3>
+        <p>Puedes estar seria, ocupada, cansada… y aun así se te asoma la ternura en cualquier gesto pequeño. Es parte de tu encanto, y de lo mucho que se te quiere.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="line"></span><span class="dot"></span><span class="line"></span></div>
+
+  <div class="photo-wrap">
+    <div class="frame">
+      <div class="frame-inner">
+        <!-- Para poner la foto: reemplaza este div por <img src="tu-foto.jpg" alt="Lu"> -->
+        <img src="lu_foto..jpeg" alt="Lu">
+        <div class="frame-placeholder">aquí va tu foto, Lu</div>
+      </div>
+    </div>
+    <p class="photo-caption">este espacio te esperaba a ti</p>
+  </div>
+
+  <section class="closing">
+    <p>Que este nuevo año te devuelva multiplicado todo el cariño que tú regalas sin medida. Feliz cumpleaños, Lu.</p>
+    <div class="signature">
+      Con todo mi cariño,
+      <span>Edward D.</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [];
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight * 1.0;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function makeParticle(){
+    return {
+      x: Math.random() * w,
+      y: h + Math.random() * 40,
+      r: Math.random() * 1.8 + 0.6,
+      speed: Math.random() * 0.35 + 0.08,
+      drift: (Math.random() - 0.5) * 0.3,
+      alpha: Math.random() * 0.5 + 0.15,
+      flicker: Math.random() * 0.02 + 0.005
+    };
+  }
+
+  const count = Math.min(70, Math.floor((window.innerWidth * window.innerHeight) / 16000));
+  for(let i=0;i<count;i++){
+    const p = makeParticle();
+    p.y = Math.random() * h;
+    particles.push(p);
+  }
+
+  function tick(){
+    if(!prefersReduced){
+      ctx.clearRect(0,0,w,h);
+      particles.forEach(p=>{
+        p.y -= p.speed;
+        p.x += p.drift;
+        p.alpha += (Math.random()-0.5) * p.flicker;
+        p.alpha = Math.max(0.05, Math.min(0.7, p.alpha));
+
+        if(p.y < -10){
+          Object.assign(p, makeParticle());
+          p.y = h + 10;
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(233,205,147,${p.alpha})`;
+        ctx.shadowColor = 'rgba(233,205,147,0.8)';
+        ctx.shadowBlur = 6;
+        ctx.fill();
+      });
+      requestAnimationFrame(tick);
+    }
+  }
+  tick();
+})();
+</script>
+
+</body>
+</html>
